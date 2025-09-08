@@ -17,6 +17,12 @@ sed -i 's/# CONFIG_PACKAGE_relayd is not set/CONFIG_PACKAGE_relayd=y/g' .config
 sed -i 's/# CONFIG_PACKAGE_wpad is not set/CONFIG_PACKAGE_wpad=y/g' .config
 sed -i 's/# CONFIG_PACKAGE_wpad-openssl is not set/CONFIG_PACKAGE_wpad-openssl=y/g' .config
 
+# Apply shortcut-fe fix patch
+if [ -f "patches/shortcut-fe-fix.patch" ]; then
+    echo "Applying shortcut-fe fix patch..."
+    git apply patches/shortcut-fe-fix.patch || true
+fi
+
 # Configure wireless relay settings
 mkdir -p files/etc/config
 cat > files/etc/config/wireless << EOF
@@ -71,4 +77,11 @@ config interface 'wwan'
 	option proto 'relay'
 	option network 'wan'
 	option ipaddr '192.168.1.2'
+	option macaddr '7C:6A:60:33:FF:3E'
+
+config interface 'lan'
+	option proto 'static'
+	option ipaddr '192.168.10.1'
+	option netmask '255.255.255.0'
+	option macaddr '7C:6A:60:33:FF:3D'
 EOF

@@ -1,0 +1,20 @@
+--- a/sfe_cm.c
++++ b/sfe_cm.c
+@@ -1096,7 +1096,7 @@ static int __init sfe_cm_init(void)
+ 	 * Register our conntrack notifier.
+ 	 */
+ 	result = 0;
+-	result = nf_conntrack_register_chain_notifier(&init_net, &sfe_cm_conntrack_notifier);
++	result = nf_conntrack_register_notifier(&init_net, &sfe_cm_conntrack_notifier);
+ 	if (result < 0) {
+ 		DEBUG_ERROR("can't register nf notifier\n");
+ 		goto exit3;
+@@ -1184,7 +1184,7 @@ static void __exit sfe_cm_exit(void)
+ 	/*
+ 	 * Unregister our conntrack notifier.
+ 	 */
+-	nf_conntrack_unregister_chain_notifier(&init_net, &sfe_cm_conntrack_notifier);
++	nf_conntrack_unregister_notifier(&init_net, &sfe_cm_conntrack_notifier);
+ 
+ 	/*
+ 	 * Unregister our netdev notifier.

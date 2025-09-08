@@ -12,4 +12,6 @@
 # Uncomment a feed source
 # sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
+# Add packages for wireless relay functionality
+echo "src-git relay https://github.com/Ysurac/openmptcprouter-feeds" >> feeds.conf.default
 

@@ -57,8 +57,8 @@ Kernel Version : 5.4-QSDK
 
 ## 使用GitHub Actions编译固件
 
-### 自动编译
-本项目已配置GitHub Actions自动编译工作流，每周二会自动触发编译。编译完成后，固件将自动上传到GitHub Releases。
+### 编译方式
+本项目使用GitHub Actions进行固件编译。编译完成后，固件将自动上传到GitHub Artifacts和Releases。
 
 ### 手动触发编译
 1. **Fork本仓库**：

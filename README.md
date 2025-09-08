@@ -55,6 +55,37 @@ Kernel Version : 5.4-QSDK
   - 调整路由器位置，使其既能接收到上游WiFi信号，又能覆盖目标区域
   - 考虑使用5GHz频段进行中继，减少干扰
 
+## 使用GitHub Actions编译固件
+
+### 自动编译
+本项目已配置GitHub Actions自动编译工作流，每周二会自动触发编译。编译完成后，固件将自动上传到GitHub Releases。
+
+### 手动触发编译
+1. **Fork本仓库**：
+   - 访问[本仓库](https://github.com/CHUN71-DROID/Actions-OpenWrt-RAX3000Q)
+   - 点击右上角的"Fork"按钮，将仓库复制到您的GitHub账号下
+
+2. **触发编译**：
+   - 在您fork的仓库中，点击"Actions"选项卡
+   - 在左侧找到"Build RAX3000Q OpenWrt"工作流
+   - 点击"Run workflow"按钮
+   - 如需SSH调试，可选择"SSH connection to Actions"选项
+   - 点击"Run workflow"开始编译
+
+3. **获取编译结果**：
+   - 编译完成后，可在"Actions"页面查看编译日志
+   - 编译成功后，固件将上传到"Artifacts"和"Releases"
+   - 在"Artifacts"中可下载完整的bin目录和固件
+   - 在"Releases"中可下载最终的固件文件
+
+### 自定义编译
+如需自定义编译选项，可修改以下文件：
+- `.config`：OpenWrt编译配置文件
+- `diy-part1.sh`：编译前脚本，用于修改feeds源
+- `diy-part2.sh`：编译后脚本，用于定制固件
+
+修改完成后，提交更改并触发工作流即可开始自定义编译。
+
 Base from [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
 
 Get SSH: [GetSSH](https://hugo.utermux.dev/default/rax3000q-latest/)
